@@ -1,0 +1,4 @@
+type=python_raw
+# name ot the python script file representing solution
+trainee="trainee.py"
+trainer="trainer.py"
