@@ -8,8 +8,10 @@ def predict(row, coefficients):
         prediction += coefficients[i + 1] * row[i]
     return prediction
 
+
 def get_coefficients(coef, train_set, learning_rate, iterations):
     iteration = 0
+    prev_mse = None
     for epoch in range(iterations):
         summation = 0
         for row in train_set:
@@ -21,8 +23,9 @@ def get_coefficients(coef, train_set, learning_rate, iterations):
                 coef[i + 1] = coef[i + 1] - learning_rate * error * row[i]
         mse = summation/len(train_set)
         iteration = iteration + 1
-        if mse < 0.07:
+        if prev_mse != None and prev_mse - mse < 0.00001:
             break
+        prev_mse = mse
     return coef, iteration
 
 
